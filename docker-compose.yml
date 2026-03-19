@@ -1,6 +1,7 @@
 services:
   web:
     container_name: devsecops-web
+    env_file: .env
     volumes:
         - ./src:/var/www/html
     build: ./src
@@ -10,18 +11,16 @@ services:
       - db
     networks:
       - devsecops_net
-    # Simulation d'une mauvaise pratique : pas de .env au début
-    # Les variables seront ajoutées lors de la correction de l'étape 1
 
   db:
     container_name: devsecops-bdd
+    env_file: .env
     image: mariadb:10.5
     environment:
-      # MAUVAISE PRATIQUE : Secrets en clair
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: myapp
-      MYSQL_USER: appuser
-      MYSQL_PASSWORD: apppassword
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
