@@ -1,4 +1,5 @@
 <?php
+
 $host = 'devsecops-bdd';
 $db   = 'myapp';
 $user = 'appuser';
@@ -10,12 +11,11 @@ try {
     $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erreur de connexion BDD : " . $e->getMessage()); // ERREUR: Mauvaise indentation (collé à gauche)
+    die("Erreur de connexion BDD : " . $e->getMessage());
 }
 
 $search = $_GET['search'] ?? '';
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
