@@ -96,7 +96,7 @@ $validatedIp = filter_var($ip, FILTER_VALIDATE_IP) ? $ip : null;
                         system("ping -c 2 " . $safeIp);
                     ?>
                 </pre>
-            <?php else: ?>
+            <?php else : ?>
                 <p style="color:red;">
                     ⚠ Adresse IP invalide. Seules les adresses IPv4 et IPv6 valides sont acceptées.
                 </p>
