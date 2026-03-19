@@ -10,7 +10,7 @@ try {
     $pdo = new PDO($dsn, $user, $pass, [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES   => false, 
+        PDO::ATTR_EMULATE_PREPARES   => false,
     ]);
 } catch (PDOException $e) {
     error_log("Erreur de connexion BDD : " . $e->getMessage());
@@ -42,7 +42,7 @@ $validatedIp = filter_var($ip, FILTER_VALIDATE_IP) ? $ip : null;
     </form>
     <hr>
 
-    <?php if ($search): ?>
+    <?php if ($search) : ?>
         <?php
         $sql  = "SELECT username, role FROM users WHERE username = :username";
 
@@ -85,16 +85,16 @@ $validatedIp = filter_var($ip, FILTER_VALIDATE_IP) ? $ip : null;
             <button type="submit">Pinger</button>
         </form>
 
-        <?php if ($ip !== ''): ?>
-            <?php if ($validatedIp !== null): ?>
+        <?php if ($ip !== '') : ?>
+            <?php if ($validatedIp !== null) : ?>
                 <pre>
-Test de ping sur : <?= htmlspecialchars($validatedIp, ENT_QUOTES, 'UTF-8') ?>
+                    Test de ping sur : <?= htmlspecialchars($validatedIp, ENT_QUOTES, 'UTF-8') ?>
 
---------------------------
-<?php
-                $safeIp = escapeshellarg($validatedIp);
-                system("ping -c 2 " . $safeIp);
-                ?>
+                    --------------------------
+                    <?php
+                        $safeIp = escapeshellarg($validatedIp);
+                        system("ping -c 2 " . $safeIp);
+                    ?>
                 </pre>
             <?php else: ?>
                 <p style="color:red;">
