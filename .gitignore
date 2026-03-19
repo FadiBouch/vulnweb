@@ -6,7 +6,7 @@ ehthumbs.db
 ehthumbs_vista.db
 
 # Environmental variables
-.env
+# .env
 
 # Dump file
 *.stackdump
