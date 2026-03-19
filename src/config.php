@@ -1,7 +1,14 @@
 <?php
-$aws_access_key = "AKIAIMADEUPKEY123456"; 
-$aws_access_key2 = "AKIAIMADEUPKEY12345678"; 
-$aws_access_key3 = "AKIAIMADEUPKEY654321"; 
-$aws_secret_key = "z8s9d8s7d6f5g4h3j2k1l0m9n8b7v6c5x4z3a2s1";
 
-?>
+$host = 'devsecops-bdd';
+$db   = 'myapp';
+$user = 'appuser';
+$pass = 'apppassword';
+
+try {
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erreur de connexion BDD : " . $e->getMessage());
+}
