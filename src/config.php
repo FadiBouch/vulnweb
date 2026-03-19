@@ -1,9 +1,8 @@
 <?php
-
-$host = 'devsecops-bdd';
-$db   = 'myapp';
-$user = 'appuser';
-$pass = 'apppassword';
+$host = getenv('DB_HOST');
+$db   = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASSWORD');
 
 try {
     $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
